@@ -2,6 +2,11 @@
 
 The frontend-assets support out-of-the-box HMR `hot module replacement` which is shipped by `vitejs/vite`.
 
+**Working proof-of-concept running on ddev is available here: https://github.com/iammati/vite-ddev<br>
+run `git clone https://github.com/iammati/vite-ddev . && ddev start && ddev frontend-dev`<br>
+in an empty directory and enjoy
+extreme frontend developer-experience thanks to vitejs/vite!**
+
 #### Requirements:
 - Working [DDEV-Local](http://ddev.readthedocs.io/) instance
 - PHP 7.4 / 8.0
