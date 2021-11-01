@@ -17,5 +17,5 @@
     "strictNullChecks": true,
     "lib": ["ES6", "DOM"]
   },
-  "include": ["./src"]
+  "include": ["./src", "postcss.config.js", "windi.config.ts"]
 }

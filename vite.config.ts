@@ -1,34 +1,21 @@
 import { defineConfig, UserConfig } from 'vite'
 import eslintPlugin from 'vite-plugin-eslint'
 import { resolve } from 'path'
-import { exec } from 'child_process'
+import WindiCSS from 'vite-plugin-windicss'
 
 const production = process.env.NODE_ENV === 'production'
-const context = production ? 'production' : 'development'
-const hot = __dirname + '/../../public/dist/hot'
-
-exec(`echo ${context} > ${hot}`)
 
 const configuration: UserConfig = {
     base: '/dist/',
 
     plugins: [
         eslintPlugin(),
-        {
-            name: 'custom-hot',
-            enforce: 'post',
-
-            handleHotUpdate ({ file, server }) {
-                // console.log(file);
-            }
-        }
+        WindiCSS()
     ],
 
     build: {
-        // mode: context,
-        bundle: true,
-        minify: true,
-        reportCompressedSize: true,
+        bundle: production,
+        minify: production,
         outDir: resolve(__dirname, '../../public/dist'),
 
         target: 'esnext',
@@ -46,8 +33,13 @@ const configuration: UserConfig = {
         }
     },
 
+    // HMR server-port which is exposed by DDEV-Local in .ddev/docker-compose.hmr.yaml
     server: {
-        port: 3000
+        port: 3000,
+
+        watch: {
+            usePolling: true
+        }
     }
 }
 
